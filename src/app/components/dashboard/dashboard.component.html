@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <!-- <link rel="stylesheet" href="./global.css" />
+    <link rel="stylesheet" href="./index.css" /> -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
+</head>
+
+<body>
+    <div class="employer-dashboard" id="employerDashboardContainer">
+        <section class="company-info-parent">
+            <header class="company-info">
+                <h3 class="tesla-corp">Tesla Corp</h3>
+                <div class="logo-wrapper">
+                    <!-- <img
+              class="logo-icon"
+              loading="lazy"
+              alt=""
+              src="./assets/menu.svg"
+            /> -->
+                    <!-- Menu option start -->
+
+                    <div class="dropdown">
+                        <button data-mdb-button-init data-mdb-ripple-init data-mdb-dropdown-init
+                            class="btn btn-primary dropdown-toggle hidden-arrow" type="button" id="dropdownMenuButton1"
+                            data-mdb-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-ellipsis-v fa-lg"></i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="#"> <i class="fas fa-user-alt pe-2"></i>My Profile</a>
+                            </li>
+                            <li><a class="dropdown-item" href="#"> <i class="fas fa-cog pe-2"></i>Settings</a></li>
+                            <li><a class="dropdown-item" href="#"> <i class="fas fa-door-open pe-2"></i>Logout</a></li>
+                        </ul>
+                    </div>
+                    <!-- Menu option end -->
+                </div>
+            </header>
+            <div class="frame-child"></div>
+            <div class="date-block-wrapper">
+                <div class="date-block">
+                    <b class="th-may-2024">{{dashBoardData.date|date}}</b>
+                    <div class="friday">{{dashBoardData.day}}</div>
+                </div>
+            </div>
+            <div class="frame-item"></div>
+        </section>
+        <div class="total-live-jobs">Total Live Jobs : {{dashBoardData.totalLiveJobs.length}}</div>
+        <section class="jobs-block">
+            <div class="jobs-block-child"></div>
+            <div *ngFor="let job of dashBoardData.totalLiveJobs; let last = last" class="job-type-block">
+                <div class="job-pair-block">
+                    <div class="job-names-block">
+                        <div class="frontend-developer">{{job.position}}</div>
+                    </div>
+                    <img class="job-icons" loading="lazy" alt="" src="./assets/edit_icon.png" />
+                </div>
+                <div *ngIf="!last" class="separator"></div>
+            </div>
+            <!-- <div class="job-type-block1">
+          <div class="frame-parent">
+            <div class="android-developer-wrapper">
+              <div class="android-developer">Android Developer</div>
+            </div>
+            <img
+              class="vector-icon"
+              loading="lazy"
+              alt=""
+              src="./public/vector-2.svg"
+            />
+          </div>
+        </div> -->
+        </section>
+        <section class="applicants-block">
+            <div class="applicants-block-child"></div>
+            <div class="total-applicant">Total Applicant</div>
+            <b class="week-label">{{dashBoardData.totalApplicant}}</b>
+            <div class="last-week">+{{dashBoardData.lastWeekCount}} last week</div>
+        </section>
+        <section class="rectangle-parent">
+            <div class="frame-inner"></div>
+            <div class="matches-block">
+                <h3 class="matched-applicants">Matched Applicants</h3>
+                <div *ngFor="let applicant of dashBoardData.matchedApplicants | slice:0:itemsToShow"
+                    class="applicants-list">
+                    <div class="applicant-items">
+                        <div class="applicant-info">
+                            <img class="applicant-info-child" loading="lazy" alt="" [src]="applicant.img" />
+
+                            <div class="dashboard-t-e-x-t">
+                                <div class="fayez-hasan">{{applicant.name}}</div>
+                            </div>
+                        </div>
+                        <div class="resume-views">
+                            <div class="view-resume">View Resume</div>
+                        </div>
+                    </div>
+                    <div class="applicant-items1"></div>
+                </div>
+            </div>
+            <div class="more-button-wrapper">
+                <button *ngIf="itemsToShow < dashBoardData.matchedApplicants.length" (click)="showMore()"
+                    class="more-button">
+                    <div class="see-more">See More</div>
+                </button>
+            </div>
+        </section>
+    </div>
+</body>
